@@ -31,15 +31,15 @@ font_sec = Font(name='宋体',size=12, bold=True, italic=False, color=color1)
 font_other = Font(name='宋体',size=10, bold=False, italic=False, color=color2)
 
 #路径
-path = r'C:\Users\姬清晨\Desktop\新建.xlsx'
+path = r'C:\Users\姬清晨\Desktop\正在做\学习\算法\春招班五毒神掌完整版 - 副本.xlsx'
 
 #打开工作簿
 wb = load_workbook(path)
 #打开工作表
-ws = wb.get_sheet_by_name('Sheet2')
+ws = wb.get_sheet_by_name('week2')
 
 #写入内容
-rows = [['题号', 'LeetCode 链接', '知识点', '一', '二', '三', '四', '五'], ['第二周'], ['实战']]
+rows = [['题号', 'LeetCode 链接', '知识点', '一', '二', '三', '四', '五','注'], ['第二周','','','','','','','','注：绿色为简单\n黄色为中等\n红色为困难\n'], ['实战']]
 for row in rows:
     ws.append(row)
 ws['A19'] = '实战'
@@ -53,8 +53,8 @@ ws.column_dimensions['E'].width = 4.04
 ws.column_dimensions['F'].width = 4.04
 ws.column_dimensions['G'].width = 4.04
 ws.column_dimensions['H'].width = 4.04
-ws.column_dimensions['I'].width = 4.04
-ws.column_dimensions['J'].width = 4.04
+ws.column_dimensions['I'].width = 21
+
 
 #设置行宽
 ws.row_dimensions[1].height = 18
@@ -77,20 +77,28 @@ for cell in ws[1]:
     
 #第二、三行
 ws['A2'].fill = line1_fill
+ws['I2'].fill = fit_fill
 ws['A3'].fill = line2_fill
 ws['A19'].fill = line2_fill
 
 #设置边框，对齐方式
-rowe = ws.max_row
-for row2 in ws.iter_rows(max_col=10, max_row=rowe):
+#rowe = ws.max_row
+for row2 in ws.iter_rows(max_col = 9, max_row=17):
     for cell2 in row2:
+        
         cell2.alignment = align
         cell2.border = border
         cell2.font = font_other
 
+for row3 in ws.iter_rows(max_col=9,min_row = 19, max_row=34):
+    for cell3 in row3:
+     
+        cell3.alignment = align
+        cell3.border = border
+        cell3.font = font_other
 #设置字体
-for cell3 in ws[1]:
-    cell3.font = font_head
+for cell31 in ws[1]:
+    cell31.font = font_head
 
 for cell4 in ws[2]:
     cell4.font = font_sec
